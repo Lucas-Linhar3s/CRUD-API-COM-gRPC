@@ -1,0 +1,30 @@
+syntax = "proto3";
+
+option go_package = "usersApp";
+
+package userApp;
+
+service User {
+  rpc GetUsers (Empty) returns (stream UserInfo);
+  rpc GetUser (Id) returns (UserInfo);
+  rpc CreateUsers (UserInfo) returns (Id);
+  rpc UpdateUsers (UserInfo) returns (Status);
+  rpc DeleteUsers (Id) returns (Status);
+}
+
+message Empty {}
+
+message UserInfo {
+  string Id = 1;
+  string Nome = 2;
+  string Sobrenome = 3;
+  int32 age = 4;
+}
+
+message Id {
+  string value = 1;
+}
+
+message Status {
+  int32 value = 1;
+}
